@@ -4,3 +4,29 @@ html {
 *, *:before, *:after {
     box-sizing: inherit;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#prompt {
+    margin: auto;
+}
+
+.canvas {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.canvasRow {
+    display: flex;
+}
+
+.canvasEntity {
+    width: 15px;
+    height: 15px;
+}
