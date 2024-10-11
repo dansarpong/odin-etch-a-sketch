@@ -37,11 +37,19 @@ function resetCanvas(size) {
   createCanvas(size);
 }
 
+function setColor(entity) {
+  let choice = Math.round((Math.random() * 10) / 3);
+
+  entity.style.backgroundColor = (!choice|| choice == 1) ? 'red':
+    (choice == 2) ? 'green' : 'blue';
+}
+
 
 function updateEntityOn(event) {
   if (event.target.id) {
     let entity = document.querySelector(`#${event.target.id}`);
     entity.setAttribute('class', 'entityOn');
+    setColor(entity);
   }
 }
 
@@ -50,6 +58,7 @@ function updateEntityOff(event) {
   let allEntitiesOn = document.querySelectorAll(".entityOn");
   allEntitiesOn.forEach((entity) => {
     entity.removeAttribute("class");
+    entity.removeAttribute('style');
   });
 }
 
