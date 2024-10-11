@@ -16,25 +16,45 @@ function createCanvas(size=16) {
     canvas.appendChild(canvasRow);
     canvasRow.setAttribute('class', 'canvasRow');
   }
+}
+
+function resetCanvas(size) {
   
-  
-  function updateEntityOn(event) {
-    if (event.target.id) {
-      let entity = document.querySelector(`#${event.target.id}`);
-      entity.setAttribute('class', 'entityOn');
-    }
+  const canvasRows = document.querySelectorAll('.canvasRow');
+  canvasRows.forEach((row) => {
+    row.remove();
+  });
+
+  let userResponse = +prompt(
+    "Input a valid integer between 1 and 100 for your canvas size: "
+  );
+
+  size = (typeof userResponse !== "number") ? 16 :
+    (userResponse > 100) ? 100 :
+    (userResponse < 1) ? 16 :
+    isNaN(userResponse) ? 16 : userResponse;
+
+  createCanvas(size);
+}
+
+
+function updateEntityOn(event) {
+  if (event.target.id) {
+    let entity = document.querySelector(`#${event.target.id}`);
+    entity.setAttribute('class', 'entityOn');
   }
-  
-  
-  function updateEntityOff(event) {
-    let allEntitiesOn = document.querySelectorAll(".entityOn");
-    allEntitiesOn.forEach((entity) => {
-      entity.removeAttribute("class");
-    });
-  }
-  
-  canvas.addEventListener('pointerover', updateEntityOn);
-  canvas.addEventListener('pointerleave', updateEntityOff);
+}
+
+
+function updateEntityOff(event) {
+  let allEntitiesOn = document.querySelectorAll(".entityOn");
+  allEntitiesOn.forEach((entity) => {
+    entity.removeAttribute("class");
+  });
 }
 
 createCanvas();
+
+canvas.addEventListener('pointerover', updateEntityOn);
+canvas.addEventListener('pointerleave', updateEntityOff);
+button.addEventListener('click', resetCanvas);
