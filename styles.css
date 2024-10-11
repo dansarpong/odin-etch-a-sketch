@@ -26,7 +26,11 @@ body {
     display: flex;
 }
 
-.canvasEntity {
+div[id^='entity'] {
     width: 15px;
     height: 15px;
+}
+
+.entityOn {
+    background-color: red;
 }
